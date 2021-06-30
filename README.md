@@ -1,2 +1,3 @@
-# Testes
-Projetos de testes
+# Ambiente de testes
+
+Teste do git, comandos etc.
