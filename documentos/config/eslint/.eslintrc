@@ -1,7 +1,7 @@
 {
   "parserOptions": {
     "ecmaVersion": 6,
-    "sourceType": "any",
+    "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true // Allows support of JSX, but use of React plugin is required to support React semantics
     }
@@ -26,7 +26,7 @@
     "constructor-super": 1,
     "for-direction": 1,
     "getter-return": 1,
-    "no-async-promise-executor": 1,
+    "no-async-promise-executor": 0,
     "no-case-declarations": 1,
     "no-class-assign": 1,
     "no-compare-neg-zero": 1,
@@ -74,15 +74,14 @@
     "require-yield": 1,
     "use-isnan": 1,
     "valid-typeof": 1,
+
     // Other rules
     "default-param-last": 1,
     "eqeqeq": [
-      "error",
-      "always",
-      {
-        "null": "ignore"
-      }
-    ],
+         "warn", "always",
+        {"null": "ignore"}
+      ],
+
     // The below are some, but not all, of the rules from eslint-plugin-react:recommended https://github.com/yannickcr/eslint-plugin-react#recommended (all errors set to warn)
     "react/display-name": 1,
     "react/jsx-no-duplicate-props": 1,
@@ -100,17 +99,16 @@
     "react/no-unescaped-entities": 1,
     "react/no-unknown-property": 1,
     "react/require-render-return": 1,
+
     // Some additional React rules
     "react/no-danger": 1,
     "react/no-did-mount-set-state": 1,
-    "react/no-did-update-set-state": 1,
+    "react/no-did-update-set-state": 1
   },
+
   "overrides": [
     {
-      "files": [
-        "*.ts",
-        "*.tsx"
-      ],
+      "files": [ "*.ts", "*.tsx" ],
       "rules": {
         // The below are all rules from @typescript-eslint/eslint:recommended https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/src/configs/eslint-recommended.ts (all errors set to warn)
         "getter-return": 0, //Checked by Typescript - ts(2378)
@@ -124,27 +122,20 @@
         "no-undef": 0, // This is checked by Typescript using the option `strictNullChecks`.
         "no-dupe-class-members": 0, // This is already checked by Typescript.
         "no-redeclare": 0, // This is already checked by Typescript.
+
         // The below is some, but not all, of the rules from @typescript-eslint/recommended https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/src/configs/recommended.json (all errors set to warn)
         "@typescript-eslint/adjacent-overload-signatures": 1,
         "@typescript-eslint/ban-ts-ignore": 1,
         "@typescript-eslint/ban-types": 1,
         "camelcase": 0,
-        // "@typescript-eslint/camelcase": ["warn",
-        //   {"properties" : "always"},
-        //   { "ignoreGlobals": true},
-        //    {allow: ["^UNSAFE_"]},
-        //   {"allow": ["^[a-zA-Z]+_[A-Za-z]+" ]}
-        // ],
-
         "@typescript-eslint/camelcase": [
           "error",
-          { "allow": [
-              "^[a-zA-Z]+_[a-zA-Z]"
+          { "allow": [  
+              "^[a-zA-Z]+_[a-zA-Z]+|^__\\$[a-zA-Z_0-9]+|_[a-zA-Z0-9_]+"
             ]
           }
         ],
-        
-        // "@typescript-eslint/camelcase":1 ,
+
         "@typescript-eslint/class-name-casing": 1,
         "@typescript-eslint/consistent-type-assertions": 1,
         "@typescript-eslint/interface-name-prefix": 1,
@@ -153,14 +144,15 @@
         "@typescript-eslint/no-array-constructor": 1,
         "no-empty-function": 0,
         "@typescript-eslint/no-empty-function": 1,
-        "@typescript-eslint/no-empty-interface": 0,
-        "@typescript-eslint/no-explicit-any": 1,
+        "@typescript-eslint/no-empty-interface": 1,
+        "@typescript-eslint/no-explicit-any": 0,
         "@typescript-eslint/no-inferrable-types": 0,
         "@typescript-eslint/no-misused-new": 1,
         "@typescript-eslint/no-namespace": 0,
         "@typescript-eslint/no-non-null-assertion": 1,
         "@typescript-eslint/no-this-alias": 1,
         "no-unused-vars": 0,
+        // "@typescript-eslint/no-unused-vars": 1,
         "no-use-before-define": 0,
         "@typescript-eslint/no-use-before-define": 0,
         "@typescript-eslint/no-var-requires": 1,
@@ -171,14 +163,16 @@
         "prefer-const": 0,
         "prefer-rest-params": 1,
         "prefer-spread": 1,
-        "allowDeclarations": 0,
-        "@typescript-eslint/no-unused-vars": [
+         "@typescript-eslint/no-unused-vars": [
           "warn",
           {
+            "vars": "local",
+            "ignoreRestSiblings":true,
             "args": "none",
-            "varsIgnorePattern": "Zyoncore|UI|Comunicacao|AcessoDados|Dominio|Aplicacao|Sigi|Online|UI|^_[a-zA-Z0-9]+|^[a-z]$"
+            "varsIgnorePattern": "Zyoncore|UI|Comunicacao|AcessoDados|Serializacao|Globalizacao|Reflexao|Atributos|ServicoArquivo|Nativo|Dominio|Aplicacao|Utilidade|WebWorker|Tarefa|Sigi|Online|^_[a-zA-Z0-9]+|^[a-z]{1,2}$|^[A-Z][a-zA-Z0-9_]+"
           }
         ]
+
       }
     }
   ]
